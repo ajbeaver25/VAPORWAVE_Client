@@ -1,5 +1,3 @@
--- Instances:
-
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -681,9 +679,9 @@ end
 local function RobDessertSupermarket()
 	if AutoFarmEnabled and CheckIfOpen(DesertSupermarket:WaitForChild("BuildingIcon")) then
 		local HumanoidRootPart = GetRootPart()
-		HumanoidRootPart.CFrame = CFrame.new(-6146.6884765625, 28.13413429260254, -1449.3973388671875) * CFrame.Angles(0, math.rad(80), 0)
+		HumanoidRootPart.CFrame = CFrame.new(-6143.41015625, 28.13413429260254, -1443.0872802734375) * CFrame.Angles(0, math.rad(80), 0)
 
-		FixCamera(Vector3.new(-6137.86865234375, 47.471961975097656, -1450.3026123046875))
+		FixCamera(Vector3.new(-6131.76025390625, 47.520870208740234, -1443.979248046875))
 
 		local Tool = Backpack:FindFirstChild("M9") or Backpack:FindFirstChildOfClass("Tool")
 
