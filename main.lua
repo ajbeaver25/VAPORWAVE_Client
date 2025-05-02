@@ -805,7 +805,7 @@ local function RobGasStation()
 end
 
 local function RobDesertGasStation()
-	if AutoFarmEnabled and CheckIfOpen(GasStation:WaitForChild("BuildingIcon")) then
+	if AutoFarmEnabled and CheckIfOpen(DesertGasStation:WaitForChild("BuildingIcon")) then
 		local HumanoidRootPart = GetRootPart()
 		HumanoidRootPart.CFrame = CFrame.new(-6324.69189453125, 28.249998092651367, -2136.72314453125) * CFrame.Angles(0, math.rad(40), 0)
 
