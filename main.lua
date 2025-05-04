@@ -19,6 +19,14 @@ local TextLabel = Instance.new("TextLabel")
 local UIStroke_3 = Instance.new("UIStroke")
 local UIPadding_2 = Instance.new("UIPadding")
 local AutoFarm = Instance.new("TextButton")
+local ClaimFlagBase = Instance.new("TextButton")
+local UIGradient_11 = Instance.new("UIGradient")
+local UIStroke_11 = Instance.new("UIStroke")
+local UIGradient_12 = Instance.new("UIGradient")
+local TextLabel_7 = Instance.new("TextLabel")
+local UIGradient_13 = Instance.new("UIGradient")
+local UIPadding_8 = Instance.new("UIPadding")
+local UIStroke_10 = Instance.new("UIStroke")
 local UIStroke_4 = Instance.new("UIStroke")
 local UIGradient_5 = Instance.new("UIGradient")
 local TextLabel_5 = Instance.new("TextLabel")
@@ -209,6 +217,47 @@ UIPadding_6.PaddingLeft = UDim.new(0.100000001, 0)
 UIPadding_6.PaddingRight = UDim.new(0.100000001, 0)
 UIPadding_6.PaddingTop = UDim.new(0.100000001, 0)
 
+ClaimFlagBase.Name = "ClaimFlagBase"
+ClaimFlagBase.Parent = AutoFrame
+ClaimFlagBase.Text = ""
+ClaimFlagBase.BorderSizePixel = 0
+ClaimFlagBase.AnchorPoint = Vector2.new(0.5, 1)
+ClaimFlagBase.Position = UDim2.new(0.5, 0, 1, -8)
+ClaimFlagBase.Size = UDim2.new(1, -16, 0.25, 0)
+
+UIGradient_11.Rotation = 90
+UIGradient_11.Parent = ClaimFlagBase
+UIGradient_11.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(29, 33, 36)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(8, 9, 10))}
+
+UIStroke_11.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_11.Transparency = 0.5
+UIStroke_11.Parent = ClaimFlagBase
+UIStroke_11.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+UIGradient_12.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 157, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 89, 255))}
+UIGradient_12.Parent = UIStroke_11 
+
+TextLabel_7.BackgroundTransparency = 1
+TextLabel_7.BorderSizePixel = 0
+TextLabel_7.Text = "<b>Claim Flag Base</b>"
+TextLabel_7.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_7.Font = Enum.Font.Nunito
+TextLabel_7.TextScaled = true
+TextLabel_7.RichText = true
+TextLabel_7.Size = UDim2.new(1, 0, 1, 0)
+TextLabel_7.Parent = ClaimFlagBase
+
+UIGradient_13.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 157, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 89, 255))}
+UIGradient_13.Parent = TextLabel_7
+
+UIPadding_8.Parent = TextLabel_7
+UIPadding_8.PaddingBottom = UDim.new(0.1, 0)
+UIPadding_8.PaddingLeft = UDim.new(0.1, 0)
+UIPadding_8.PaddingRight = UDim.new(0.1, 0)
+UIPadding_8.PaddingTop = UDim.new(0.1, 0)
+
+UIStroke_10.Parent = TextLabel_7
+
 CharacterFrame.Name = "CharacterFrame"
 CharacterFrame.Parent = Contents
 CharacterFrame.AnchorPoint = Vector2.new(1, 0)
@@ -275,8 +324,9 @@ TextLabel_6.BackgroundTransparency = 1.000
 TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel_6.BorderSizePixel = 0
 TextLabel_6.Size = UDim2.new(1, 0, 1, 0)
-TextLabel_6.Font = Enum.Font.Unknown
-TextLabel_6.Text = "Start Auto Farm"
+TextLabel_6.Font = Enum.Font.Nunito
+TextLabel_6.Text = "<b>Start Auto Farm</b>"
+TextLabel_6.RichText = true
 TextLabel_6.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel_6.TextScaled = true
 TextLabel_6.TextSize = 14.000
@@ -313,30 +363,30 @@ local function FTPCE_fake_script() -- ScreenGui.Draggable
 	local RunService = game:GetService("RunService")
 	local UserInputService = game:GetService("UserInputService")
 	local GuiService = game:GetService("GuiService")
-	
+
 	local Camera = game.Workspace.CurrentCamera
-	
+
 	local Frame = script.Parent:WaitForChild("MainFrame")
-	
+
 	local function OffsetToScale(Position)
 		local ViewportSize = Camera.ViewportSize
 		return UDim2.new(Position.X / ViewportSize.X, 0, Position.Y / ViewportSize.Y, 0)
 	end
-	
+
 	local function MakeDraggable(Frame, Button, Sharpness)
 		local TargetPosition = Frame.Position
 		local TargetMousePosition = Vector2.new(TargetPosition.X.Offset, TargetPosition.Y.Offset)
 		local DraggingDown = false
 		local Offset = TargetMousePosition
-	
+
 		Button.MouseButton1Down:Connect(function()
 			local MousePosition = UserInputService:GetMouseLocation()
 			local AbsolutePosition = Button.AbsolutePosition
-	
+
 			Offset = AbsolutePosition - MousePosition
 			DraggingDown = true
 		end)
-	
+
 		local Connection1 = UserInputService.InputEnded:Connect(function(Input)
 			if DraggingDown then
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -344,7 +394,7 @@ local function FTPCE_fake_script() -- ScreenGui.Draggable
 				end
 			end
 		end)
-		
+
 		local Connection2 = nil
 		Connection2 = RunService.RenderStepped:Connect(function()
 			if not Frame then
@@ -352,38 +402,38 @@ local function FTPCE_fake_script() -- ScreenGui.Draggable
 					Connection1:Disconnect()
 					Connection2:Disconnect()
 				end)
-				
+
 				return
 			end
-			
+
 			if DraggingDown then
 				TargetMousePosition = UserInputService:GetMouseLocation()
-	
+
 				local TargetAbsolute = TargetMousePosition + Offset + Vector2.new(0, 32)
-	
+
 				local FrameSize = Frame.AbsoluteSize
 				local FrameAnchor = Frame.AnchorPoint
 				local ScaleOffset = Vector2.new(FrameSize.X * FrameAnchor.X, FrameSize.Y * FrameAnchor.Y)
-	
+
 				local OffsetPosition = TargetAbsolute + ScaleOffset
 				TargetPosition = OffsetToScale(OffsetPosition)
 			end
-	
+
 			if Frame.Position ~= TargetPosition then
 				local TargetAbsolute = TargetMousePosition + Offset + Vector2.new(0, 32)
-	
+
 				local FrameSize = Frame.AbsoluteSize
 				local FrameAnchor = Frame.AnchorPoint
 				local ScaleOffset = Vector2.new(FrameSize.X * FrameAnchor.X, FrameSize.Y * FrameAnchor.Y)
-	
+
 				local OffsetPosition = TargetAbsolute + ScaleOffset
 				TargetPosition = OffsetToScale(OffsetPosition)
-	
+
 				Frame.Position = Frame.Position:Lerp(TargetPosition, Sharpness)
 			end
 		end)
 	end
-	
+
 	MakeDraggable(Frame, Frame, 0.1)
 end
 coroutine.wrap(FTPCE_fake_script)()
@@ -391,126 +441,126 @@ local function OAVCCYG_fake_script() -- Contents.TabSwitcher
 	local script = Instance.new('LocalScript', Contents)
 
 	local TweenService = game:GetService("TweenService")
-	
+
 	local Contents = script.Parent
 	local SideBar = Contents:WaitForChild("SideBar")
 	local AutoFarm = Contents:WaitForChild("AutoFrame")
 	local CharacterFrame = Contents:WaitForChild("CharacterFrame")
-	
+
 	local AutoFarmButton = SideBar:WaitForChild("AutoFarm")
 	local CharacterButton = SideBar:WaitForChild("Character")
-	
+
 	local function OpenAutoFarm()
 		AutoFarm.Visible = true
-		
+
 		local TextGoal = {}
 		TextGoal.TextColor3 = Color3.fromRGB(0, 255, 255)
-		
+
 		local StrokeGoal = {}
 		StrokeGoal.Color = Color3.fromRGB(0, 255, 255)
-		
+
 		local ButtonGoal = {}
 		ButtonGoal.ZIndex = 2
-		
+
 		local TweenStyle = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-		
+
 		local TextTween = TweenService:Create(AutoFarmButton:WaitForChild("TextLabel"), TweenStyle, TextGoal)
 		local StrokeTween = TweenService:Create(AutoFarmButton:WaitForChild("UIStroke"), TweenStyle, StrokeGoal)
 		local ButtonTween = TweenService:Create(AutoFarmButton, TweenStyle, ButtonGoal)
-	
+
 		TextTween:Play()
 		StrokeTween:Play()
 		ButtonTween:Play()
 	end
-	
+
 	local function CloseAutoFarm()
 		AutoFarm.Visible = false
-	
+
 		local TextGoal = {}
 		TextGoal.TextColor3 = Color3.fromRGB(255, 255, 255)
-	
+
 		local StrokeGoal = {}
 		StrokeGoal.Color = Color3.fromRGB(255, 255, 255)
-	
+
 		local ButtonGoal = {}
 		ButtonGoal.ZIndex = 1
-	
+
 		local TweenStyle = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-	
+
 		local TextTween = TweenService:Create(AutoFarmButton:WaitForChild("TextLabel"), TweenStyle, TextGoal)
 		local StrokeTween = TweenService:Create(AutoFarmButton:WaitForChild("UIStroke"), TweenStyle, StrokeGoal)
 		local ButtonTween = TweenService:Create(AutoFarmButton, TweenStyle, ButtonGoal)
-	
+
 		TextTween:Play()
 		StrokeTween:Play()
 		ButtonTween:Play()
 	end
-	
+
 	local function OpenCharacter()
 		CharacterFrame.Visible = true
-	
+
 		local TextGoal = {}
 		TextGoal.TextColor3 = Color3.fromRGB(0, 255, 255)
-	
+
 		local StrokeGoal = {}
 		StrokeGoal.Color = Color3.fromRGB(0, 255, 255)
-	
+
 		local ButtonGoal = {}
 		ButtonGoal.ZIndex = 2
-	
+
 		local TweenStyle = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-	
+
 		local TextTween = TweenService:Create(CharacterButton:WaitForChild("TextLabel"), TweenStyle, TextGoal)
 		local StrokeTween = TweenService:Create(CharacterButton:WaitForChild("UIStroke"), TweenStyle, StrokeGoal)
 		local ButtonTween = TweenService:Create(CharacterButton, TweenStyle, ButtonGoal)
-	
+
 		TextTween:Play()
 		StrokeTween:Play()
 		ButtonTween:Play()
 	end
-	
+
 	local function CloseCharacter()
 		CharacterFrame.Visible = false
-	
+
 		local TextGoal = {}
 		TextGoal.TextColor3 = Color3.fromRGB(255, 255, 255)
-	
+
 		local StrokeGoal = {}
 		StrokeGoal.Color = Color3.fromRGB(255, 255, 255)
-	
+
 		local ButtonGoal = {}
 		ButtonGoal.ZIndex = 1
-	
+
 		local TweenStyle = TweenInfo.new(0.35, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-	
+
 		local TextTween = TweenService:Create(CharacterButton:WaitForChild("TextLabel"), TweenStyle, TextGoal)
 		local StrokeTween = TweenService:Create(CharacterButton:WaitForChild("UIStroke"), TweenStyle, StrokeGoal)
 		local ButtonTween = TweenService:Create(CharacterButton, TweenStyle, ButtonGoal)
-	
+
 		TextTween:Play()
 		StrokeTween:Play()
 		ButtonTween:Play()
 	end
-	
+
 	local function SelectCharacter()
 		task.spawn(OpenCharacter)
 		task.spawn(CloseAutoFarm)
 	end
-	
-	
+
+
 	local function SelectAutoFarm()
 		task.spawn(OpenAutoFarm)
 		task.spawn(CloseCharacter)
 	end
-	
+
 	AutoFarmButton.MouseButton1Click:Connect(function()
 		SelectAutoFarm()
 	end)
-	
+
 	CharacterButton.MouseButton1Click:Connect(function()
 		SelectCharacter()
 	end)
-	
+
 	SelectCharacter()
 end
 coroutine.wrap(OAVCCYG_fake_script)()
@@ -570,42 +620,42 @@ local function RobBank()
 		local HumanoidRootPart = GetRootPart()
 		HumanoidRootPart.CFrame = CFrame.new(-3797.642333984375, 0.9399508833885193, -1034.0955810546875) * CFrame.Angles(0, math.rad(86), 0)
 		FixCamera(Vector3.new(-3784.3681640625, 14.455183029174805, -1033.2100830078125))
-		
+
 		local Tool = Backpack:FindFirstChild("M9") or Backpack:FindFirstChildOfClass("Tool")
-		
+
 		task.wait(0.2)
-		
+
 		if Tool then
 			Tool.Parent = GetCharacter()
 		end
-		
+
 		task.wait(4)
 		local CashStacks = Bank:WaitForChild("CashStacks")
 		local Prompts = CashStacks:GetDescendants()
-		
+
 		for Index, Prompt in pairs(Prompts) do
 			if Prompt:IsA("ProximityPrompt") then
 				Prompt.RequiresLineOfSight = false
 				Prompt.HoldDuration = 0
 				Prompt.MaxActivationDistance = 1000
 				Prompt.Exclusivity = Enum.ProximityPromptExclusivity.AlwaysShow
-				
+
 				task.delay(0.75, function()
 					Prompt:InputHoldBegin()
 				end)
-				
+
 				task.delay(2, function()
 					Prompt.MaxActivationDistance = 5
 					Prompt:InputHoldEnd()
 				end)
 			end
 		end
-		
+
 		task.wait(2)
-		
+
 		local Tycoon = GetTycoon()
 		local DropOff = Tycoon:WaitForChild("DropOff")
-		
+
 		Tool.Parent = Backpack
 		HumanoidRootPart.CFrame = DropOff:GetPivot()
 		task.wait(1)
@@ -616,9 +666,9 @@ local function RobSupermaket()
 	if AutoFarmEnabled and CheckIfOpen(Supermarket:WaitForChild("BuildingIcon")) then
 		local HumanoidRootPart = GetRootPart()
 		HumanoidRootPart.CFrame = CFrame.new(-4476.56298828125, 27.925973892211914, -1617.5169677734375) * CFrame.Angles(0, 0, 0)
-		
+
 		FixCamera(Vector3.new(-4477.4326171875, 39.668701171875, -1605.00439453125))
-		
+
 		local Tool = Backpack:FindFirstChild("M9") or Backpack:FindFirstChildOfClass("Tool")
 
 		task.wait(0.2)
@@ -774,9 +824,9 @@ local function RobGasStation()
 				end)
 			end
 		end
-		
+
 		task.wait(1)
-		
+
 		local NewPrompts = GasStation:GetDescendants()
 
 		for Index, Prompt in pairs(Prompts) do
@@ -795,7 +845,7 @@ local function RobGasStation()
 				end)
 			end
 		end
-		
+
 		task.wait(1)
 
 		Tool.Parent = Backpack
@@ -938,8 +988,17 @@ AutoFarm_2.MouseButton1Click:Connect(function()
 	else
 		TextLabel_6.Text = "Start Auto Farm"
 	end
-	
+
 	if AutoFarmEnabled then
 		StartAutoFarm()
 	end
+end)
+
+ClaimFlagBase.MouseButton1Click:Connect(function()
+	local RootPart = GetRootPart()
+	local StartCFrame = RootPart.CFrame
+	
+	RootPart.CFrame = CFrame.new(-5346.939453125, 29.4202938079834, -866.8804321289062)
+	task.wait(12)
+	RootPart.CFrame = StartCFrame
 end)
